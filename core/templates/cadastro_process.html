@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block conteudo %}
+
+
+<form class="form-inline" method="POST">
+    {% csrf_token %}
+    <div class="form-group">
+        <label for="campNome">Name</label>
+        <input type="text" class="form-control" name="name" id="campNome" placeholder="Jane Doe">
+    </div>
+    <a href="{% url 'process_config' %}" class="btn btn-success">Adicionar</a>
+    <button type="submit" class="btn btn-default">Salvar</button>
+</form>
+<!-- Large modal -->
+{% if processos %}
+<div class="row">
+    <ul class="list-group col-sm-5">
+        {% for process in processos %}
+        <li class="list-group-item">{{ process.id }} / {{ process.name }}</li>
+        {% endfor %}
+    </ul>
+</div>
+{% endif %}
+
+{% endblock %}
